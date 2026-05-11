@@ -47,7 +47,7 @@ All original requirements are met, plus additional polish:
 
 ```bash
 git clone <repo-url>
-cd snap-capture-poc
+cd scalpel_img_compression_poc
 ```
 
 **2. Install dependencies**
