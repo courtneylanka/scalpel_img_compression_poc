@@ -1,16 +1,16 @@
 # Surgical Tray Capture — POC
 
-A React Native (Expo) proof-of-concept for top-down surgical tray image capture with automatic orientation enforcement, image compression, and side-by-side comparison review.
+A React Native (Expo) proof of concept for top down surgical tray image capture with automatic orientation enforcement, image compression, and side by side comparison review.
 
 ---
 
 ## Overview
 
-This POC validates the Expo + React Native stack for a clinical top-down capture workflow. The goal was to capture a surgical tray image from directly above, automatically compress it, and present a clear summary of the capture to the user.
+This POC validates the Expo + React Native stack for a clinical top down capture workflow. The goal was to capture a surgical tray image from directly above, automatically compress it, and present a clear summary of the capture to the user.
 
 ### Original Requirements
 
-- Detect when the device is held flat (top-down orientation)
+- Detect when the device is held flat (top down orientation)
 - Lock the camera shutter until orientation is correct
 - Capture the image and compress it automatically
 - Show original and compressed image details (size, resolution, format)
@@ -23,10 +23,10 @@ All original requirements are met, plus additional polish:
 |---|---|
 | Orientation detection | DeviceMotion pitch + roll, both must be within ±5° |
 | Alignment feedback | Green/red corner brackets + status pill + haptic vibration on alignment |
-| Camera capture | Shutter locked until aligned, haptic on capture, full-screen compressing state while processing |
-| Auto compression | Captured as PNG (lossless), compressed once to JPEG quality 50 — no double lossy compression |
-| Side-by-side review | Original and compressed shown together, tap either to fullscreen |
-| Capture summary | 6-field details grid — ORIGINAL · COMPRESSED · SAVED / RESOLUTION · FORMAT (PNG → JPEG) · CAPTURED |
+| Camera capture | Shutter locked until aligned, haptic on capture, full screen compressing state while processing |
+| Auto compression | Captured as PNG (lossless), compressed once to JPEG quality 50%. No double lossy compression |
+| Side by side review | Original and compressed shown together, tap either to fullscreen |
+| Capture summary | 6 field details grid — ORIGINAL · COMPRESSED · SAVED / RESOLUTION · FORMAT (PNG → JPEG) · CAPTURED |
 | Storage saved card | Highlights MB saved and % reduction |
 | Save to Photos | Always saves the compressed version |
 | Dark clinical UI | Monochrome dark theme with blue accent, consistent across all screens |
@@ -98,7 +98,7 @@ The app will request the following permissions on first launch:
 
 | Permission | Purpose |
 |---|---|
-| Camera | Capture top-down tray images |
+| Camera | Capture top down tray images |
 | Motion & Fitness | Detect device orientation (pitch/roll) via DeviceMotion |
 | Photo Library | Save compressed image to Photos |
 
@@ -138,11 +138,11 @@ components/
     CaptureHeader/
       index.tsx                      # Top bar with title and close button
   Review/
-    index.tsx                        # Capture summary screen — composes sub-components
+    index.tsx                        # Capture summary screen — composes sub components
     PhotoComparison/
-      index.tsx                      # Side-by-side original and compressed image thumbnails
+      index.tsx                      # Side by side original and compressed image thumbnails
     CaptureDetails/
-      index.tsx                      # 6-field details grid (size, resolution, format, timestamp)
+      index.tsx                      # 6 field details grid (size, resolution, format, timestamp)
     StorageSavedCard/
       index.tsx                      # Highlights storage saved in bytes and percentage
     ReviewActions/
@@ -153,9 +153,9 @@ components/
     Chip/
       index.tsx                      # Small label badge used on the landing screen
     LoadingOverlay/
-      index.tsx                      # Full-screen loading state with spinner and message
+      index.tsx                      # Full screen loading state with spinner and message
     FullscreenImageModal/
-      index.tsx                      # Fullscreen image viewer modal with safe-area-aware close button
+      index.tsx                      # Fullscreen image viewer modal with safe area aware close button
 
 helpers/
   constants.ts        # Shared constants (ORIENTATION_THRESHOLD)
@@ -196,7 +196,7 @@ helpers/
 
 ## Notes
 
-- The camera captures in PNG (lossless) first, then compresses once to JPEG quality 50 — this avoids double lossy compression that would occur if capturing JPEG and re-encoding to JPEG
-- Compression reduces file size significantly (typically 40–70%) without a noticeable visual difference at normal viewing distances
+- The camera captures in PNG (lossless) first, then compresses once to JPEG quality 50 — this avoids double lossy compression that would occur if capturing JPEG and re encoding to JPEG
+- Compression reduces file size significantly (typically 40% -70%) without a noticeable visual difference at normal viewing distances
 - Resolution is preserved — only the file size changes, not the pixel dimensions
-- The app is portrait-locked; orientation detection uses raw accelerometer data via DeviceMotion
+- The app is portrait locked; orientation detection uses raw accelerometer data via DeviceMotion
